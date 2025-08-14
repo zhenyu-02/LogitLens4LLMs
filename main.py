@@ -5,16 +5,15 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 import warnings  # Import warnings module
 from enum import Enum
-from explanation.logit_lens.model_factory import ModelFactory, ModelType
+from model_factory import ModelFactory, ModelType
 from activation_analyzer import ActivationAnalyzer
-from prompt_templates import TaskConfig, Concept, CrossDomainAnalogyConfig, PromptTemplate
 
 class ModelPath(Enum):
     """Enumeration of local model paths"""
     DEEPSEEK_LLAMA_8B = "/root/autodl-fs/models_hf/DeepSeek-R1-Distill-Llama-8B"
     DEEPSEEK_QWEN_7B = "/root/autodl-fs/models_hf/DeepSeek-R1-Distill-Qwen-7B"
-    LLAMA_2_7B = "/root/autodl-fs/models_hf/Llama-2-7b"
-    LLAMA_3_1_8B = "/root/autodl-fs/models_hf/Llama-3.1-8b"
+    LLAMA_2_7B = "/root/autodl-fs/models_hf/Llama-2-7b-chat"
+    LLAMA_3_1_8B = "/root/autodl-fs/models_hf/Llama-3.1-8B-Instruct"
     QWEN_7B = "/root/autodl-fs/models_hf/Qwen2.5-7B-Instruct"
     
     @classmethod
@@ -60,6 +59,7 @@ def run_analysis(
         save_output: Whether to save visualization results
         output_base_path: Base directory for saving outputs
     """
+    local_path = None
     if use_local:
         local_path = ModelPath.get_path(model_type)
         
@@ -117,6 +117,7 @@ def main():
     print("\nRunning basic logit lens test...")
     run_analysis(
         model_type=ModelType.LLAMA_3_1_8B,
+        use_local=True,
         token=token,
         prompt=test_prompt,
         num_trials=1,
@@ -129,14 +130,13 @@ if __name__ == "__main__":
     main()
 
 # Generating trail 1...
-# Step 1: Generated '
-# '
+# Step 1: Generated '\n'
+# '\n'
 # Step 2: Generated '##'
 # Step 3: Generated 'Solution'
-# Step 4: Generated '
-# '
-# Step 5: Generated '
-# '
+# Step 4: Generated '\n'
+# '\n'
+# Step 5: Generated '\n'
 # Step 6: Generated 'Answer'
 # Step 7: Generated ':'
 # Step 8: Generated '['
@@ -145,8 +145,8 @@ if __name__ == "__main__":
 # Trail 1 completed.
 
 # Generating trail 2...
-# Step 1: Generated '
-# '
+# Step 1: Generated '\n'
+# '\n'
 # Step 2: Generated '1'
 # Step 3: Generated '.'
 # Step 4: Generated 'Dim'
@@ -155,13 +155,12 @@ if __name__ == "__main__":
 # Step 7: Generated 'marg'
 # Step 8: Generated 'inal'
 # Step 9: Generated 'utility'
-# Step 10: Generated '
-# '
+# Step 10: Generated '\n'
 # Trail 2 completed.
 
 # Generating trail 3...
-# Step 1: Generated '
-# '
+# Step 1: Generated '\n'
+# '\n'
 # Step 2: Generated '>'
 # Step 3: Generated 'A'
 # Step 4: Generated '.'
@@ -187,16 +186,15 @@ if __name__ == "__main__":
 # Trail 4 completed.
 
 # Generating trail 5...
-# Step 1: Generated '
-# '
+# Step 1: Generated '\n'
+# '\n'
 # Step 2: Generated '##'
 # Step 3: Generated 'How'
 # Step 4: Generated 'to'
 # Step 5: Generated 'solve'
-# Step 6: Generated '
-# '
-# Step 7: Generated '
-# '
+# Step 6: Generated '\n'
+# '\n'
+# Step 7: Generated '\n'
 # Step 8: Generated 'The'
 # Step 9: Generated 'answers'
 # Step 10: Generated 'are'

@@ -1,8 +1,8 @@
 from enum import Enum
 from typing import Union, Dict, Type
-from ..logit_lens.model_helper.llama_2_helper import Llama7BHelper
-from ..logit_lens.model_helper.llama_3_1_helper import Llama3_1_8BHelper
-from ..logit_lens.model_helper.qwen_helper import QwenHelper
+from model_helper.llama_2_helper import Llama7BHelper
+from model_helper.llama_3_1_helper import Llama3_1_8BHelper
+from model_helper.qwen_helper import QwenHelper
 
 class ModelType(Enum):
     """Enumeration of supported model types"""
